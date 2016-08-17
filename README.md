@@ -23,7 +23,7 @@ If you don't have a Telegram Bot, just [create one](https://core.telegram.org/bo
 
 You will get a **Telegram Bot Token** after bot created. Keep this token, we will use it later. The bot token is looked like this.
 
-```
+```nginx
 123456789:aBcDeFgHiJkLmN-OpQrStUvWXyZ12345678
 ```
 
@@ -33,7 +33,7 @@ To send messages to a Telegram chat, you must first needs to start a chat with t
 
 To get the **Chat ID** from Telegram bot, execute this command using [getUpdates](https://core.telegram.org/bots/api#getupdates) function of Telegram API.
 
-```shell
+```console
 $ curl --silent "https://api.telegram.org/bot{TOKEN}/getUpdates" | jq
 {
   "ok": true,
@@ -65,20 +65,20 @@ In this example the **Chat ID** to look out for is **22031984**. Replace `{TOKEN
 
 Clone this repo or download the zipped file. 
 
-```shell
+```console
 # git clone https://github.com/matriphe/monit2telegram.git 
 # cd monit2telegram
 ```
 
 Put your Telegram Bot ID and Chat ID in `telegramrc` and save it to the root  directory (`/root/.telegramrc`), since Monit runs as root.
 
-```shell
+```console
 # cp telegramrc /root/.telegramrc
 ```
 
 Put `sendtelegram.sh` and `monit2telegram.sh` to `/usr/local/bin` and make them executable.
 
-```shell
+```console
 # cp sendtelegram.sh /usr/local/bin/sendtelegram
 # chmod +x /usr/local/bin/sendtelegram
 # cp monit2telegram.sh /usr/local/bin/monit2telegram
@@ -87,7 +87,7 @@ Put `sendtelegram.sh` and `monit2telegram.sh` to `/usr/local/bin` and make them 
 
 Test the `sendtelegram` script by running this command.
 
-```shell
+```console
 # sendtelegram -c /root/.telegramrc -m "Hello from the other side!"
 Sending message 'Hello from the other side!' to 22031984
 Done!
@@ -99,7 +99,7 @@ You should see Telegram message sent by your Telegram bot.
 
 Now you can add Monit alert by adding this line to Monit configuration file.
 
-```conf
+```nginx
 check file nginx.pid with path /var/run/nginx.pid
     if changed timestamp then exec "/usr/local/bin/monit2telegram" as uid root and gid root
 ```
