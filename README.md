@@ -70,10 +70,10 @@ Clone this repo or download the zipped file.
 # cd monit2telegram
 ```
 
-Put your Telegram Bot ID and Chat ID in `telegramrc` and save it to the root  directory (`/root/.telegramrc`), since Monit runs as root.
+Put your Telegram Bot ID and Chat ID in `telegramrc` and save it to the `/etc`  directory (`/etc/telegramrc`).
 
 ```console
-# cp telegramrc /root/.telegramrc
+# cp telegramrc /etc/telegramrc
 ```
 
 Put `sendtelegram.sh` and `monit2telegram.sh` to `/usr/local/bin` and make them executable.
@@ -88,7 +88,7 @@ Put `sendtelegram.sh` and `monit2telegram.sh` to `/usr/local/bin` and make them 
 Test the `sendtelegram` script by running this command.
 
 ```console
-# sendtelegram -c /root/.telegramrc -m "Hello from the other side!"
+# sendtelegram -c /etc/telegramrc -m "Hello from the other side!"
 Sending message 'Hello from the other side!' to 22031984
 Done!
 #
@@ -101,5 +101,5 @@ Now you can add Monit alert by adding this line to Monit configuration file.
 
 ```nginx
 check file nginx.pid with path /var/run/nginx.pid
-    if changed timestamp then exec "/usr/local/bin/monit2telegram" as uid root and gid root
+    if changed pid then exec "/usr/local/bin/monit2telegram"
 ```

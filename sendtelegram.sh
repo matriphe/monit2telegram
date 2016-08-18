@@ -26,7 +26,7 @@ if [ -n "$CONFIGFILE" -a ! -f "$CONFIGFILE" ]; then echo "Configfile not found: 
 # Check config file if given
 if [ -n "$CONFIGFILE" ]; then . "$CONFIGFILE";
 # Default config file ~/.telegramrc if it exists
-elif [ -f ~/.telegramrc ]; then . ~/.telegramrc;
+elif [ -f /etc/telegramrc ]; then . /etc/telegramrc;
 fi
 
 # If TOKEN or CHATID were given in the commandline, then override that in the configfile
