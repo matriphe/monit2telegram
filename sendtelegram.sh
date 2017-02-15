@@ -44,7 +44,7 @@ if [ ! -z $PARSEMODE_ARG ] && [[ "$PARSEMODE_ARG" != +(markdown|html) ]]; then u
 URL="https://api.telegram.org/bot$TOKEN/sendMessage"
 TIMEOUT=10
 
-echo "Sending message '$TEXT' to $CHATID with CMDARGS $CMDARGS"
+echo "Sending message '$TEXT' to $CHATID"
 
 CMDARGS="chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT"
 
